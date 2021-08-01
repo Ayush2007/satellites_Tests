@@ -4,6 +4,12 @@ Steps to run test :
 2. install postman and import the package with environment variables
 3. Run collection
 
+Note Global Variables :
+
+variable = url
+Initial value = https://api.wheretheiss.at/v1/satellites/25544
+Current value = https://api.wheretheiss.at/v1/satellites/25544
+
 Issues found :
 
 satellites/[id]/positions :
