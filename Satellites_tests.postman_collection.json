@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "98628b34-eb6d-4743-92ac-7673b7802696",
+		"name": "Satellites_tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "positions_Tests_miles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?timestamps=1436029892,1436029902&units=miles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "timestamps",
+							"value": "1436029892,1436029902"
+						},
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "units",
+							"value": "miles"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positions_Tests_ kilometers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?timestamps=1436029892,1436029902&units=kilometers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "timestamps",
+							"value": "1436029892,1436029902"
+						},
+						{
+							"key": "units",
+							"value": "kilometers"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positions_Tests_notimeStamp_km",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"invalid timestamp in list: \");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?units=kilometers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "units",
+							"value": "kilometers"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positions_Tests_notimeStamp_miles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"invalid timestamp in list: \");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?units=miles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "units",
+							"value": "miles"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positionst_Tests_noparam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Error matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"invalid timestamp in list: \");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positions_Tests_meter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 400 since unit is not as expected\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?timestamps=1436029892,1436029902&units=meter",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "timestamps",
+							"value": "1436029892,1436029902"
+						},
+						{
+							"key": "units",
+							"value": "meter"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "positions_Tests_moreThanMaxTimestamps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 400 since request has more than 10 timestamps\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Status code should be 400 since format of timestamp is incorrect\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/positions?timestamps=1436029892,1436029902,1436029202,1436039902,1436025502,1436459902,1436349902,1436049901,1436029972,1436029602,1436029502,143345902,23,123,3,4,14360292344,143602,&units=miles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"positions"
+					],
+					"query": [
+						{
+							"key": "timestamps",
+							"value": "1436029892,1436029902,1436029202,1436039902,1436025502,1436459902,1436349902,1436049901,1436029972,1436029602,1436029502,143345902,23,123,3,4,14360292344,143602,"
+						},
+						{
+							"key": "units",
+							"value": "miles"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tles_Tests_formatJSON",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1st test",
+							"pm.test(\"Status Code is 200\", function() {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//2nd test",
+							"pm.test(\"Verify name \", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(\"iss\");",
+							"});",
+							"",
+							"//3rd test",
+							"pm.test(\"Verify tle_timestamp\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"tle_timestamp\");",
+							"});",
+							"",
+							"//4th test",
+							"pm.test(\"Verify header value \", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.header).to.eql(\"ISS (ZARYA)\");",
+							"});",
+							"",
+							"//5th test",
+							"pm.test(\"Response time is less than 1700\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1700);",
+							"});",
+							"",
+							"//6th test",
+							"pm.test(\"Verify line1 \", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.line1).to.eql(\"1 25544U 98067A   21212.30049829  .00005256  00000-0  10398-3 0  9995\");",
+							"});",
+							"",
+							"//7th test",
+							"pm.test(\"Verify line2 \", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.line2).to.eql(\"2 25544  51.6430 124.5801 0001390 220.3682 235.5802 15.48861065295430\");",
+							"});",
+							"",
+							"//8th test",
+							"pm.test(\"Verify tle_timestamp value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.tle_timestamp).to.eql(1627715563);",
+							"});",
+							"",
+							"//9th test",
+							"pm.test(\"Verify requested_timestamp \", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"requested_timestamp\");",
+							"});",
+							"",
+							"//10th test",
+							"pm.test(\"response should be okay to process\", function () {",
+							"    pm.response.to.not.be.error;",
+							"    pm.response.to.not.have.jsonBody(\"error\");",
+							"});",
+							"",
+							"//11th test",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tles",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tles_Tests_formatText",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//1st test",
+							"pm.test(\"Status Code is 200\", function() {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//2nd test",
+							"pm.test(\"Verify name \", function () {",
+							"    var textData = pm.response.text();",
+							"    pm.expect(textData).to.contain(\"ISS (ZARYA)\");",
+							"});",
+							"",
+							"//3rd test",
+							"pm.test(\"Response time is less than 1700\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1700);",
+							"});",
+							"",
+							"//4th test",
+							"pm.test(\"Verify line1 \", function () {",
+							"    var textData = pm.response.text();",
+							"    pm.expect(textData).to.contain(\"1 25544U 98067A   21212.30049829  .00005256  00000-0  10398-3 0  9995\");",
+							"});",
+							"",
+							"//5th test",
+							"pm.test(\"Verify line2 \", function () {",
+							"    var textData = pm.response.text();",
+							"    pm.expect(textData).to.contain(\"2 25544  51.6430 124.5801 0001390 220.3682 235.5802 15.48861065295430\");",
+							"});",
+							"",
+							"//6th test",
+							"pm.test(\"response should be okay to process\", function () {",
+							"    pm.response.to.not.be.error;",
+							"});",
+							"",
+							"//7th test",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;    ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tles?format=text",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tles"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tiles_Tests_formatXML",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 400 since format is not as expected\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tles?format=xml",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tles"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "xml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tiles_Tests_formatHTML",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 400 since format is not as expected\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tles?format=html",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tles"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "html"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tiles_Tests_formatAuto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 400 since format is not as expected\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tles?format=auto",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tles"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "auto"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
